@@ -24,7 +24,7 @@ internal class IntegrateTest {
         }
 
         val res = PI / 4
-        assertEqualsEps(res, integrate2D(::fTest, ::pStandard, iterations), eps)
+        assertEqualsEps(res, integrate2D(::fTest, ::pStandard, N=iterations), eps)
     }
 
     @Test
@@ -35,7 +35,7 @@ internal class IntegrateTest {
         }
 
         val res = 2 * PI / 3
-        assertEqualsEps(res, integrate2D(::fTest, ::pStandard, iterations), eps)
+        assertEqualsEps(res, integrate2D(::fTest, ::pStandard, N=iterations), eps)
     }
 
 }
