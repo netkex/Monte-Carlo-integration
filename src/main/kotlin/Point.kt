@@ -30,6 +30,10 @@ class Point3D(val x: Double = 0.0, val y: Double = 0.0, val z: Double = 0.0): Po
     override fun generateNewPoint(gen: (m: Double) -> Double): Point3D {
         return Point3D(gen(x), gen(y), gen(z))
     }
+
+    override fun toString(): String {
+        return "Point3D(x: $x, y: $y, z: $z)"
+    }
 }
 
 class IncorrectPointImplementation: Exception("Incorrect implementation of point class")
