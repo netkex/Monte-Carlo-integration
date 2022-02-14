@@ -4,13 +4,18 @@ fun nextGaussian(mean: Double = 0.0, std: Double = 1.0): Double {
     return mean + Random().nextGaussian() * std
 }
 
-private fun nextStep(oldPnt: Point2D, p: (pnt: Point2D) -> Double): Point2D {
-    val newPnt = Point2D(nextGaussian(oldPnt.x), nextGaussian(oldPnt.y))
+private fun <T: Point> nextStep(oldPnt: T, p: (pnt: T) -> Double): T {
+    val newPnt = try {
+        oldPnt.generateNewPoint(::nextGaussian) as T
+    } catch (e: Exception) {
+        throw IncorrectPointImplementation()
+    }
+
     val acceptRatio = p(newPnt) / p(oldPnt)
     return if (Random().nextDouble() <= acceptRatio) newPnt else oldPnt
 }
 
-fun generatePoints(startPoint: Point2D, p: (pnt: Point2D) -> Double) =
+fun <T: Point> generatePoints(startPoint: T, p: (pnt: T) -> Double) =
     generateSequence(startPoint) {
         nextStep(it, p)
     }
