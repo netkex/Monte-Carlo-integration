@@ -6,9 +6,9 @@ const val intN = 1e6.toInt()
  * @param [f] function to integrate
  * @param [p] distribution function
  * @param [firstPoint] first point of samples in Monte-Carlo algorithm (optional)
- * @param  [N] number of samples (optional)
+ * @param [N] number of samples (optional)
  */
-inline fun<reified T: Point> integrate(
+inline fun <reified T: Point> integrate(
     noinline f: (pnt: T) -> Double,
     noinline p: (pnt: T) -> Double,
     firstPoint: T? = null,
